@@ -57,8 +57,14 @@
     100% { transform: translate(-4%, -3%) scale(1.08); }
   }
 
-  .wrap { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; }
-  @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } }
+  .wrap { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: start; }
+  @media (max-width: 900px) {
+    .wrap { grid-template-columns: 1fr; }
+    .panel.stage { gap: 16px; }
+    .panel.stage .winner { width: 100%; margin: 0; }
+    .panel.stage .order { margin: 0; padding: 16px 18px; }
+    .names-panel { order: 10; }
+  }
 
   header { grid-column: 1 / -1; text-align: center; margin-bottom: 4px; }
   header h1 {
@@ -82,6 +88,8 @@
   }
 
   .stage { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .stage .winner { align-self: stretch; }
+  .stage .order { align-self: stretch; width: 100%; background: rgba(255,255,255,0.03); }
 
   .topic-row { width: 100%; }
   label.field { display: block; font-size: 12px; color: var(--muted); margin: 0 0 7px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
@@ -601,6 +609,18 @@
         </div>
       </div>
 
+      <div class="winner" id="winnerBox">
+        <span class="ic">🏅</span>
+        <span>Seçilen Şanslı Kişi:</span>
+        <span class="name" id="winnerName">[ ]</span>
+      </div>
+
+      <div class="panel order">
+        <div class="section-title">🎤 Söz Alma Sırası</div>
+        <div class="order-grid" id="orderGrid"></div>
+        <div class="empty" id="orderEmpty">Henüz kimse seçilmedi.</div>
+      </div>
+
       <div class="spin-status" id="spinStatus">Çark dönüyor...</div>
 
       <div class="btns">
@@ -610,7 +630,7 @@
       </div>
     </div>
 
-    <div class="panel">
+    <div class="panel names-panel">
       <div class="section-title">👥 Kişileri Düzenle</div>
       <label class="field" for="namesInput">Her satıra bir isim</label>
       <textarea id="namesInput" placeholder="Bora&#10;Damla&#10;Emre&#10;Kenan&#10;Ömer&#10;Ufuk"></textarea>
@@ -619,18 +639,6 @@
       </div>
       <div class="section-title" style="margin-top:24px">📋 Şanslı Kişi Listesi</div>
       <ul class="people" id="peopleList"></ul>
-    </div>
-
-    <div class="winner" id="winnerBox">
-      <span class="ic">🏅</span>
-      <span>Seçilen Şanslı Kişi:</span>
-      <span class="name" id="winnerName">[ ]</span>
-    </div>
-
-    <div class="panel order">
-      <div class="section-title">🎤 Söz Alma Sırası</div>
-      <div class="order-grid" id="orderGrid"></div>
-      <div class="empty" id="orderEmpty">Henüz kimse seçilmedi.</div>
     </div>
   </div>
 
